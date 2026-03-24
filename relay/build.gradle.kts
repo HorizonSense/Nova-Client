@@ -26,10 +26,7 @@ dependencies {
     
     // Use api to expose these to the app module
     api(libs.minecraft.auth)
-    api(project(":relay:Network:transport-raknet"))
-    api(project(":relay:Protocol:bedrock-codec"))
-    api(project(":relay:Protocol:bedrock-connection"))
-    api(project(":relay:Protocol:common"))
+    api("org.cloudburstmc.protocol:bedrock-connection:3.0.0.Beta12-SNAPSHOT")
     api(libs.bundles.netty)
     
     testImplementation(kotlin("test"))

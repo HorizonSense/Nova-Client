@@ -175,7 +175,7 @@ class PositionLoggerModule : Module("position_logger", ModuleCategory.Misc) {
         val textPacket = TextPacket().apply {
             type = TextPacket.Type.RAW
             isNeedsTranslation = false
-            message = msg
+            setMessage(msg)
             xuid = ""
             sourceName = ""
         }

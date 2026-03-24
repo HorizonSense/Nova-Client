@@ -87,7 +87,7 @@ class ChestStealerModule : Module("ChestStealer", ModuleCategory.World) {
         val packet = interceptablePacket.packet
         when (packet) {
             is NetworkStackLatencyPacket -> {
-                if (packet.fromServer) {
+                if (packet.isFromServer) {
                     handleLatencyPacket(packet)
                 }
             }

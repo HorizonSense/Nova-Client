@@ -30,12 +30,3 @@ dependencyResolutionManagement {
 rootProject.name = "NovaClient"
 include(":app")
 include(":relay")
-include(
-    ":relay:adventure",
-    ":relay:Protocol:bedrock-codec",
-    ":relay:Protocol:bedrock-connection",
-    ":relay:Protocol:common",
-    ":relay:Network:codec-query",
-    ":relay:Network:codec-rcon",
-    ":relay:Network:transport-raknet",
-)

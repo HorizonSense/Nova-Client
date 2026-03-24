@@ -2,7 +2,6 @@ package com.radiantbyte.novarelay
 
 import com.radiantbyte.novarelay.listener.NovaRelayPacketListener
 import io.netty.util.internal.PlatformDependent
-import net.kyori.adventure.text.Component
 import org.cloudburstmc.protocol.bedrock.BedrockClientSession
 import org.cloudburstmc.protocol.bedrock.BedrockPeer
 import org.cloudburstmc.protocol.bedrock.BedrockServerSession
@@ -10,7 +9,7 @@ import org.cloudburstmc.protocol.bedrock.netty.BedrockPacketWrapper
 import org.cloudburstmc.protocol.bedrock.packet.BedrockPacket
 import org.cloudburstmc.protocol.bedrock.packet.BedrockPacketHandler
 import org.cloudburstmc.protocol.bedrock.packet.UnknownPacket
-import java.util.*
+import java.util.Queue
 
 
 class NovaRelaySession internal constructor(

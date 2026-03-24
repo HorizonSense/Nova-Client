@@ -20,7 +20,7 @@ fun captureGamePacket(
     onSessionCreated: NovaRelaySession.() -> Unit
 ): NovaRelay {
     CodecRegistry.getLatestCodec()
-    
+
     return NovaRelay(
         localAddress = localAddress,
         advertisement = advertisement
@@ -33,7 +33,7 @@ fun captureGamePacket(
 fun authorize(
     cache: Boolean = true,
     file: File? = Paths.get(".").resolve("bedrockSession.json").toFile(),
-    gameVersion: String = "1.21.131",
+    gameVersion: String = "1.26",
     msaDeviceCodeCallback: Consumer<MsaDeviceCode> = Consumer {
         println("Go to ${it.directVerificationUri}")
     }

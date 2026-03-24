@@ -1,5 +1,5 @@
 package com.radiantbyte.novaclient.util
 
 object MinecraftUtils {
-    const val RECOMMENDED_VERSION = "v1.21.131"
+    const val RECOMMENDED_VERSION = "v1.26.x"
 }

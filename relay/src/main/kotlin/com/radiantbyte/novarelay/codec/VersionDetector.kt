@@ -3,6 +3,7 @@ package com.radiantbyte.novarelay.codec
 object VersionDetector {
 
     private val versionRanges = mapOf(
+        924 to listOf("1.26.0", "1.26.1", "1.26.2", "1.26.3"),
         898 to listOf("1.21.130",  "1.21.131"),
         860 to listOf("1.21.124"),
         859 to listOf("1.21.120"),

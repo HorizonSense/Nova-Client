@@ -34,7 +34,7 @@ object AuthUtils {
     fun fetchOnlineChain(authManager: BedrockAuthManager): List<String> {
         val certChain = authManager.minecraftCertificateChain.upToDate
         val sessionKeyPair = authManager.sessionKeyPair
-        
+
         val publicBase64Key = Base64.encode(sessionKeyPair.public.encoded)
         val consumer = JwtConsumerBuilder()
             .setAllowedClockSkewInSeconds(60)
@@ -69,7 +69,7 @@ object AuthUtils {
         val certChain = authManager.minecraftCertificateChain.upToDate
         val playFabToken = authManager.playFabToken.upToDate
         val sessionKeyPair = authManager.sessionKeyPair
-        
+
         val publicKeyBase64 = Base64.encode(sessionKeyPair.public.encoded)
 
         val overridedData = HashMap<String, Any>()
