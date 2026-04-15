@@ -10,7 +10,9 @@ import com.radiantbyte.novarelay.util.refresh
 
 fun main() {
     val localAddress = NovaAddress("0.0.0.0", 19132)
-    val remoteAddress = NovaAddress("ntest.easecation.net", 19132)
+    val remoteAddress = NovaAddress("play.lbsg.net", 19132)
+
+    //ntest.easecation.net
 
     Definitions.loadBlockPalette()
 

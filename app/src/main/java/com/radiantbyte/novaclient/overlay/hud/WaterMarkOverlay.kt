@@ -38,6 +38,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.radiantbyte.novaclient.application.AppContext
 import com.radiantbyte.novaclient.game.module.misc.WaterMarkModule
 import com.radiantbyte.novaclient.ui.theme.NovaColors
 import kotlinx.coroutines.delay
@@ -80,6 +81,12 @@ class WaterMarkOverlay : OverlayWindow() {
     private var animateText by mutableStateOf(false)
     private var glowEffect by mutableStateOf(false)
     private var borderStyle by mutableStateOf(WaterMarkModule.BorderStyle.NONE)
+
+    private val versionName by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+        AppContext.instance.packageManager.getPackageInfo(
+            AppContext.instance.packageName, 0
+        ).versionName
+    }
 
     companion object {
         val overlayInstance by lazy { WaterMarkOverlay() }
@@ -286,7 +293,7 @@ class WaterMarkOverlay : OverlayWindow() {
         parts.add(customText)
 
         if (showVersion) {
-            parts.add("v1.9")
+            parts.add("$versionName")
         }
 
         if (showTime) {

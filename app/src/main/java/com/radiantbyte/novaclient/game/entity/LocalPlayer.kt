@@ -14,6 +14,7 @@ import org.cloudburstmc.protocol.bedrock.packet.ContainerClosePacket
 import org.cloudburstmc.protocol.bedrock.packet.ContainerOpenPacket
 import org.cloudburstmc.protocol.bedrock.packet.InventoryTransactionPacket
 import org.cloudburstmc.protocol.bedrock.packet.LevelSoundEventPacket
+import org.cloudburstmc.protocol.bedrock.packet.MovePlayerPacket
 import org.cloudburstmc.protocol.bedrock.packet.PlayerAuthInputPacket
 import org.cloudburstmc.protocol.bedrock.packet.StartGamePacket
 import java.util.UUID
@@ -46,6 +47,25 @@ class LocalPlayer(val session: GameSession) : Player(0L, 0L, UUID.randomUUID(), 
 
     var openContainer: AbstractInventory? = null
         private set
+
+    fun teleport(x: Float, y: Float, z: Float) {
+        move(x, y, z)
+        session.clientBound(MovePlayerPacket().apply {
+            runtimeEntityId = this@LocalPlayer.runtimeEntityId
+            position = Vector3f.from(x, y, z)
+            rotation = Vector3f.from(rotationPitch, rotationYaw, 0f)
+            if (rideEntity != null) {
+                ridingRuntimeEntityId = rideEntity!!
+                mode = MovePlayerPacket.Mode.HEAD_ROTATION
+            } else {
+                mode = MovePlayerPacket.Mode.NORMAL
+            }
+        })
+    }
+
+    fun teleport(vec3: Vector3f) {
+        teleport(vec3.x, vec3.y, vec3.z)
+    }
 
     override fun onPacketBound(packet: BedrockPacket) {
         super.onPacketBound(packet)

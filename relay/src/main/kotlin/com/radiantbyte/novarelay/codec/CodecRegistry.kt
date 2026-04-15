@@ -4,6 +4,9 @@ import org.cloudburstmc.protocol.bedrock.codec.BedrockCodec
 
 object CodecRegistry {
 
+    const val CURRENT_PROTOCOL = 944
+    const val CURRENT_VERSION = "1.26.10"
+
     private val codecMap = mutableMapOf<Int, BedrockCodec>()
     private val minecraftVersionMap = mutableMapOf<String, Int>()
     private val sortedProtocolVersions = mutableListOf<Int>()
@@ -71,6 +74,8 @@ object CodecRegistry {
         registerCodec(860, "1.21.124", "org.cloudburstmc.protocol.bedrock.codec.v860.Bedrock_v860")
         registerCodec(898, "1.21.130", "org.cloudburstmc.protocol.bedrock.codec.v898.Bedrock_v898")
         registerCodec(924, "1.26.0", "org.cloudburstmc.protocol.bedrock.codec.v924.Bedrock_v924")
+        registerCodec(CURRENT_PROTOCOL, CURRENT_VERSION, "org.cloudburstmc.protocol.bedrock.codec.v${CURRENT_PROTOCOL}.Bedrock_v${CURRENT_PROTOCOL}")
+
         sortedProtocolVersions.sortDescending()
     }
 
@@ -80,39 +85,24 @@ object CodecRegistry {
             val codecField = codecClass.getDeclaredField("CODEC")
             codecField.isAccessible = true
             val codec = codecField.get(null) as BedrockCodec
-            
             codecMap[protocolVersion] = codec
             minecraftVersionMap[minecraftVersion] = protocolVersion
             sortedProtocolVersions.add(protocolVersion)
-            
-            println("Registered codec: $minecraftVersion (protocol $protocolVersion)")
-        } catch (e: Exception) {
-            println("Failed to register codec $minecraftVersion: ${e.message}")
-        }
+        } catch (_: Exception) {}
     }
 
-    fun getCodecByProtocol(protocolVersion: Int): BedrockCodec? {
-        return codecMap[protocolVersion]
-    }
+    fun getCodecByProtocol(protocolVersion: Int): BedrockCodec? = codecMap[protocolVersion]
 
     fun getClosestCodec(protocolVersion: Int): BedrockCodec {
         val exactMatch = codecMap[protocolVersion]
-        if (exactMatch != null) {
-            return exactMatch
-        }
-
+        if (exactMatch != null) return exactMatch
         val closestVersion = sortedProtocolVersions.findLast { it <= protocolVersion }
             ?: sortedProtocolVersions.last()
-
         return codecMap[closestVersion]!!
     }
 
-    fun getLatestCodec(): BedrockCodec {
-        return codecMap[sortedProtocolVersions.first()]!!
-    }
+    fun getLatestCodec(): BedrockCodec = codecMap[sortedProtocolVersions.first()]!!
 
-    fun getMinecraftVersion(protocolVersion: Int): String? {
-        return minecraftVersionMap.entries.find { it.value == protocolVersion }?.key
-    }
-
+    fun getMinecraftVersion(protocolVersion: Int): String? =
+        minecraftVersionMap.entries.find { it.value == protocolVersion }?.key
 }

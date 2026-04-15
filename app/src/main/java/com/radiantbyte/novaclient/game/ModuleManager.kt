@@ -4,59 +4,11 @@ package com.radiantbyte.novaclient.game
 import android.content.Context
 import android.net.Uri
 import com.radiantbyte.novaclient.application.AppContext
-import com.radiantbyte.novaclient.game.module.combat.AntiCrystalModule
-import com.radiantbyte.novaclient.game.module.combat.AntiKnockbackModule
-import com.radiantbyte.novaclient.game.module.combat.CrystalSmashModule
-import com.radiantbyte.novaclient.game.module.combat.HitAndRunModule
-import com.radiantbyte.novaclient.game.module.combat.HitboxModule
-import com.radiantbyte.novaclient.game.module.combat.KillauraModule
-import com.radiantbyte.novaclient.game.module.combat.TriggerBotModule
-import com.radiantbyte.novaclient.game.module.misc.ArrayListModule
-import com.radiantbyte.novaclient.game.module.misc.AutoDisconnectModule
-import com.radiantbyte.novaclient.game.module.misc.BaritoneModule
-import com.radiantbyte.novaclient.game.module.misc.CommandHandlerModule
-import com.radiantbyte.novaclient.game.module.misc.CoordinatesModule
-import com.radiantbyte.novaclient.game.module.misc.DesyncModule
-import com.radiantbyte.novaclient.game.module.misc.FakeDeathModule
-import com.radiantbyte.novaclient.game.module.misc.FakeXPModule
-import com.radiantbyte.novaclient.game.module.misc.KeyStrokesModule
-import com.radiantbyte.novaclient.game.module.misc.MinerModule
-import com.radiantbyte.novaclient.game.module.misc.NoChatModule
-import com.radiantbyte.novaclient.game.module.motion.NoClipModule
-import com.radiantbyte.novaclient.game.module.misc.PieChartModule
-import com.radiantbyte.novaclient.game.module.misc.PositionLoggerModule
-import com.radiantbyte.novaclient.game.module.misc.ReplayModule
-import com.radiantbyte.novaclient.game.module.misc.WaterMarkModule
-import com.radiantbyte.novaclient.game.module.misc.ChestStealerModule
-import com.radiantbyte.novaclient.game.module.world.AntiDebuffModule
-import com.radiantbyte.novaclient.game.module.world.EffectsModule
-import com.radiantbyte.novaclient.game.module.world.ParticlesModule
-import com.radiantbyte.novaclient.game.module.world.TimeShiftModule
-import com.radiantbyte.novaclient.game.module.world.WeatherControllerModule
-import com.radiantbyte.novaclient.game.module.motion.AirJumpModule
-import com.radiantbyte.novaclient.game.module.motion.AntiAFKModule
-import com.radiantbyte.novaclient.game.module.motion.AutoWalkModule
-import com.radiantbyte.novaclient.game.module.motion.BhopModule
-import com.radiantbyte.novaclient.game.module.motion.FlyModule
-import com.radiantbyte.novaclient.game.module.motion.HighJumpModule
-import com.radiantbyte.novaclient.game.module.motion.JetPackModule
-import com.radiantbyte.novaclient.game.module.motion.MotionFlyModule
-import com.radiantbyte.novaclient.game.module.motion.SpeedModule
-import com.radiantbyte.novaclient.game.module.motion.SpiderModule
-import com.radiantbyte.novaclient.game.module.motion.SprintModule
-import com.radiantbyte.novaclient.game.module.motion.UnifiedFlyModule
-import com.radiantbyte.novaclient.game.module.visual.CrosshairModule
-import com.radiantbyte.novaclient.game.module.visual.ESPModule
-import com.radiantbyte.novaclient.game.module.visual.FullbrightModule
-import com.radiantbyte.novaclient.game.module.visual.MinimapModule
-import com.radiantbyte.novaclient.game.module.visual.NetworkInfoModule
-import com.radiantbyte.novaclient.game.module.visual.NoHurtCameraModule
-import com.radiantbyte.novaclient.game.module.visual.PositionDisplayModule
-import com.radiantbyte.novaclient.game.module.visual.SpeedDisplayModule
-import com.radiantbyte.novaclient.game.module.visual.WorldStateModule
-import com.radiantbyte.novaclient.game.module.visual.ZoomModule
-import com.radiantbyte.novaclient.game.module.visual.TargetHudModule
-import com.radiantbyte.novaclient.game.module.world.FreeCameraModule
+import com.radiantbyte.novaclient.game.module.combat.*
+import com.radiantbyte.novaclient.game.module.misc.*
+import com.radiantbyte.novaclient.game.module.world.*
+import com.radiantbyte.novaclient.game.module.motion.*
+import com.radiantbyte.novaclient.game.module.visual.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
@@ -90,6 +42,8 @@ object ModuleManager {
             add(FlyModule())
             add(SpeedModule())
             add(AirJumpModule())
+            add(ClickTPModule())
+            add(ClipModule())
             add(NoClipModule())
             add(JetPackModule())
             add(HighJumpModule())
